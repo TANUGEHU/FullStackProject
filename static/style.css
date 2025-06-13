@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.navigation {
+    background: #333;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.container .logo h1 a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container .sections .section {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container .sections .section {
+    padding: 10px;
+}
+
+.wrapper {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.wrapper .post {
+    padding: 10px;
+}

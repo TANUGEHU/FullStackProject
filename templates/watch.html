@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch | SocialGram</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='watch.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="post">
+                {% if post.media_type == "image/jpeg" or post.media_type == "image/png" or post.media_type == "image/gif" or post.media_type == "image/webp" or post.media_type == "image/jpg" %}
+                    <img src="{{ url_for('get_media', id=post.id) }}" alt="no image found">
+                {% else %}
+                    <video controls>
+                        <source src="{{ url_for('get_media', id=post.id) }}">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+            </div>
+            <div class="detail">
+                <h1>{{ post.title }}</h1>
+                <p>{{ post.description }}</p>
+            </div>
+            <div class="likes">
+                <button class="like-button" data-post-id="{{ post.id }}">
+                    <span id="likes-btn-{{ post.id }}">{{ post.likes.count() }}</span> likes
+                </button>
+            </div>
+            {% if post.user_id == current_user.id %}
+                <div class="buttons">
+                    <a href="{{ url_for('profile.update_post', id=post.id) }}" class="button">Update</a>
+                    <a href="{{ url_for('profile.delete_post', id=post.id) }}" class="button">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="comments" id="comments">
+            {% for comment in comments %}
+                <div class="comment">
+                    <h3>{{ comment.user.username }}</h3>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <input type="text" class="comment-input" placeholder="Write a comment..." data-post-id="{{ post.id }}">
+        <button class="post-comment" onclick="">Comment</button>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

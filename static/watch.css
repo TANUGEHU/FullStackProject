@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.container .detail {
+    padding: 10px;
+}
+
+.comment-input {
+    padding: 10px;
+    margin: 10px;
+}
+
+.container .likes {
+    margin: 5px;
+}
+
+.container .likes button {
+    padding: 5px 10px;
+}
+
+.post-comment { 
+    padding: 10px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | SocialGram</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <header>
+        <div class="navigation">
+            <div class="container">
+                <div class="logo">
+                    <h1><a href="#">Hello {{ current_user.username }}</a></h1>
+                </div>
+                <div class="sections">
+                    <a href="/profile/upload" class="section">Uplaod</a>
+                    <a href="/logout" class="section">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2 style="padding: 10px;">Your Posts</h2>
+        <div class="wrapper">
+            {% for post in user.posts %}
+                <div class="post">
+                    {% if post.media_type == "image/jpeg" or post.media_type == "image/png" or post.media_type == "image/gif" or post.media_type == "image/webp" or post.media_type == "image/jpg" %}
+                        <a href="{{ url_for('watch', id=post.id) }}"><img src="{{ url_for('get_media', id=post.id) }}" width="400" height="500" style="object-fit: cover;" alt="no image found"></a>
+                    {% else %}
+                        <div class="box">
+                            <a href="{{ url_for('watch', id=post.id) }}">
+                                <video controls width="400" height="500">
+                                    <source src="{{ url_for('get_media', id=post.id) }}">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

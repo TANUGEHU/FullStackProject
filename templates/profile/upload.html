@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload | SocialGram</title>
+</head>
+<body>
+    <div class="form-wrapper">
+        <form action="/profile/upload", method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.title.label }}: {{ form.title }} <br>
+            {{ form.description.label }}: {{ form.description }} <br>
+            {{ form.post.label }}: {{ form.post }} <br>
+            {{ form.submit }}
+        </form>
+    </div>
+</body>
+</html>
